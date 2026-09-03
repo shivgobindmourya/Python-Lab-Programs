@@ -1,0 +1,4 @@
+id,name,age,city,department,salary
+1,Amit Sharma,25.0,Delhi,Engineering,50000.0
+3,Karan Mehta,30.0,,Engineering,55000.0
+6,Anjali Singh,22.0,Bangalore,Engineering,
