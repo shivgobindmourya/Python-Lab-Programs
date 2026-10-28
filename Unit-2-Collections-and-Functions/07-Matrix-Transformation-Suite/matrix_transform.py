@@ -1,106 +1,59 @@
-# Program: Matrix Transformation Using Functional Programming
-
-# Original matrix represented as a 2D list
-matrix = [
-    [12, -5, 8],
-    [3, 15, -2],
-    [10, 6, 20]
-]
-
-# Original data represented as tuples
-data = [
-    ("Alice", 85),
-    ("Bob", 72),
-    ("Charlie", 95),
-    ("David", 60),
-    ("Eva", 88)
-]
+# Function to remove negative values from each row
+def filter_negative(matrix):
+    return [list(filter(lambda x: x >= 0, row)) for row in matrix]
 
 
-# Function 1: Display the original matrix
-def display_matrix(matrix):
-    for row in matrix:
-        print(row)
+# Function to square every element of the matrix
+def square_matrix(matrix):
+    return [list(map(lambda x: x * x, row)) for row in matrix]
 
 
-# Function 2: Remove negative values using filter()
-def remove_negative_values(matrix):
-    return [
-        list(filter(lambda x: x >= 0, row))
-        for row in matrix
-    ]
+# Function to sort each row in ascending order
+def sort_rows(matrix):
+    return [sorted(row) for row in matrix]
 
 
-# Function 3: Transform matrix elements using map()
-def transform_matrix(matrix):
-    return [
-        list(map(lambda x: x * 2, row))
-        for row in matrix
-    ]
-
-
-# Function 4: Sort all matrix elements
-def sort_matrix_elements(matrix):
-    elements = [
-        element
-        for row in matrix
-        for element in row
-    ]
-
-    return sorted(elements)
-
-
-# Function 5: Sort matrix rows by their sum
-def sort_rows_by_sum(matrix):
+# Function to sort rows according to their sum
+def sort_by_sum(matrix):
     return sorted(matrix, key=lambda row: sum(row))
 
 
-# Function 6: Filter tuples based on marks
-def filter_students(data, minimum_marks):
-    return list(
-        filter(lambda student: student[1] >= minimum_marks, data)
-    )
-
-
-# Function 7: Sort tuples by marks in descending order
-def sort_students(data):
-    return sorted(data, key=lambda student: student[1], reverse=True)
-
-
-# Function 8: Extract student marks using map()
-def extract_marks(data):
-    return list(map(lambda student: student[1], data))
+# Function to convert rows into tuples
+def convert_to_tuples(matrix):
+    return [tuple(row) for row in matrix]
 
 
 # Main program
-print("========== ORIGINAL MATRIX ==========")
-display_matrix(matrix)
+matrix = [
+    [5, -2, 8, 1],
+    [-4, 7, 3, -1],
+    [9, 2, -6, 4]
+]
 
-print("\n========== MATRIX WITHOUT NEGATIVE VALUES ==========")
-clean_matrix = remove_negative_values(matrix)
-display_matrix(clean_matrix)
+print("Original Matrix:")
+print(matrix)
 
-print("\n========== MATRIX ELEMENTS MULTIPLIED BY 2 ==========")
-modified_matrix = transform_matrix(matrix)
-display_matrix(modified_matrix)
+# Step 1: Remove negative values
+filtered = filter_negative(matrix)
+print("\nAfter Filtering Negative Values:")
+print(filtered)
 
-print("\n========== SORTED MATRIX ELEMENTS ==========")
-print(sort_matrix_elements(matrix))
+# Step 2: Square the remaining values
+squared = square_matrix(filtered)
+print("\nAfter Squaring Elements:")
+print(squared)
 
-print("\n========== MATRIX ROWS SORTED BY SUM ==========")
-print(sort_rows_by_sum(matrix))
+# Step 3: Sort each row
+sorted_matrix = sort_rows(squared)
+print("\nRows Sorted in Ascending Order:")
+print(sorted_matrix)
 
-print("\n========== ORIGINAL STUDENT RECORDS ==========")
-for student in data:
-    print(student)
+# Step 4: Sort rows according to their sum
+final_matrix = sort_by_sum(sorted_matrix)
+print("\nRows Sorted According to Their Sum:")
+print(final_matrix)
 
-print("\n========== STUDENTS WITH MARKS >= 80 ==========")
-print(filter_students(data, 80))
-
-print("\n========== STUDENTS SORTED BY MARKS ==========")
-for student in sort_students(data):
-    print(student)
-
-print("\n========== EXTRACTED STUDENT MARKS ==========")
-print(extract_marks(data))
-
+# Step 5: Convert rows into tuples
+tuple_matrix = convert_to_tuples(final_matrix)
+print("\nFinal Matrix as Tuples:")
+print(tuple_matrix)
